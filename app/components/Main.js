@@ -22,26 +22,24 @@ var Main = React.createClass({
     // Run the query for the search topic
     helpers.runQuery(this.state.searchTopic, this.state.searchStartyear, this.state.searchEndyear).then(function(data) {
       console.log("component did update!");
-      // if (data !== this.state.results) {
-      //   console.log("Address", data);
-      //   this.setState({ results: data });
       // if (data) {
-      //   console.log("Great!");
+        console.log("This is the data: ", data);
+        console.log("This is first headline: ", data.response.docs[0].headline.main);
+        // this.setState({ results: data.response.docs[0].headline.main });
       // }
     });
-  // },
         
-    helpers.postArticle(results).then(function() {
-          console.log("Updated!");
-  });
+  //   helpers.postArticle(data).then(function() {
+  //         console.log("Updated!");
+  // });
   },
 
   // This function allows childrens to update the parent.
   setSearch: function(topic, startyear, endyear) {
     this.setState ({ searchTopic: topic, searchStartyear: startyear, searchEndyear: endyear})
-    console.log("Main topic: " + topic);
-    console.log("Start year: " + startyear);
-    console.log("End year: " + endyear);
+    // console.log("Main topic: " + topic);
+    // console.log("Start year: " + startyear);
+    // console.log("End year: " + endyear);
   },
 
   // Here we render the function
@@ -68,7 +66,7 @@ var Main = React.createClass({
       <div className="container grid">
     	<div className="row grid-name">
       		<div className="col s12 center">
-      			<Results articles={this.state.results} />
+      			<Results title={this.state.results}/>
       		</div>
       	</div>
       </div>

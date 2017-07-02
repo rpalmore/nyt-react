@@ -9,7 +9,7 @@ var Results = React.createClass({
          <h4>Results</h4>
 
       <ul className="collection with-header">
-        <li className="collection-header"><h5></h5></li>
+        <li className="collection-header"><h5>{this.props.title}</h5></li>
         <li className="collection-item"><div><a href="" className="secondary-content"><i className="material-icons">library_add</i></a></div></li>
       </ul>
        </div>
