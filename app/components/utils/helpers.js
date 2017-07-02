@@ -1,5 +1,5 @@
 // Borrowing from 061717 Address-Finder-Solution
-
+console.log("I'm a helper.")
 // Include the axios package for performing HTTP requests (promise based alternative to request)
 var axios = require("axios");
 
@@ -8,21 +8,27 @@ var authKey = "b9f91d369ff59547cd47b931d8cbc56b:0:74623931";
 
 // Helper functions for making API Calls
 var helper = {
-
   // This function serves our purpose of running the query to find articles.
-  runQuery: function(articles) {
+  runQuery: function(topic, startyear, endyear) {
 
-    console.log(articles);
+    console.log(topic, startyear, endyear); 
 
     // Set up queryURL
-    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + authKey + "&q="
+    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + authKey + "&q=" + topic + "&begin_date=" + startyear + "&end_date=" + endyear
+    console.log("queryURL: " + queryURL);
     return axios.get(queryURL).then(function(response) {
-      // If get get a result, return that result's formatted address property
-      if (response.data.results[0]) {
-        return response.data.results[0].formatted;
-      }
-      // If we don't get any results, return an empty string
-      return "";
+      // If we get a result, return the needed data
+      if (response) {
+        for (var i = 0; i < 5; i++) {
+          console.log("TITLE: " + response.data.response.docs[i].headline.main);
+          console.log("SUMMARY: " + response.data.response.docs[i].snippet);
+          console.log("PUBLISHED DATE: " + response.data.response.docs[i].pub_date);
+          console.log("LINK: " + response.data.response.docs[i].web_url);
+        }
+      } else {
+        console.log("No RESULTS");
+        return "";
+        }
     });
   },
 
@@ -31,10 +37,14 @@ var helper = {
     return axios.get("/api");
   },
 
-  // This function posts new searches to our database.
-  // Need to add here: Title, link, published date.
-  postArticle: function(articles) {
-    return axios.post("/api", { location: location });
+  // This function posts query results to our database.
+  postArticle: function(response) {
+    console.log("Here is my post method");
+    for (var i = 0; i < 5; i++) {
+      return axios.post("/api", { title: response.data.response.docs[i].headline.main });
+      console.log("Hey! Made it to post articles");
+    // return axios.post("/api", { title: response.data.response.docs[i].headline.main, summary: response.data.response.docs[i].snippet, pubdate: response.data.response.docs[i].pub_date,link: response.data.response.docs[i].web_url });
+    }
   }
 };
 

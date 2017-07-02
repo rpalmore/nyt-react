@@ -11,88 +11,68 @@ var helpers = require("./utils/helpers");
 
 // Creating the Main component
 var Main = React.createClass({
-
-  // Here we set a generic state associated with the number of clicks
-  // Note how we added in this history state variable
+  // Here we set a generic state associated with the page
   getInitialState: function() {
-    return { searchTerm: "", results: "", history: [] };
+    return { searchTopic: "", results: [], saved: [] };
+    console.log("Initial state?");
   },
 
-  // The moment the page renders get the History
-  componentDidMount: function() {
-    // Get the latest history.
-    helpers.getHistory().then(function(response) {
-      console.log(response);
-      if (response !== this.state.history) {
-        console.log("History", response.data);
-        this.setState({ history: response.data });
-      }
-    }.bind(this));
-  },
-
-  // If the component changes (i.e. if a search is entered)...
+  // If the component changes (i.e. if search terms are entered) ...
   componentDidUpdate: function() {
-
-    // Run the query for the address
-    helpers.runQuery(this.state.searchTerm).then(function(data) {
-      if (data !== this.state.results) {
-        console.log("Address", data);
-        this.setState({ results: data });
-
-        // After we've received the result... then post the search term to our history.
-        helpers.postHistory(this.state.searchTerm).then(function() {
+    // Run the query for the search topic
+    helpers.runQuery(this.state.searchTopic, this.state.searchStartyear, this.state.searchEndyear).then(function(data) {
+      console.log("component did update!");
+      // if (data !== this.state.results) {
+      //   console.log("Address", data);
+      //   this.setState({ results: data });
+      // if (data) {
+      //   console.log("Great!");
+      // }
+    });
+  // },
+        
+    helpers.postArticle(results).then(function() {
           console.log("Updated!");
-
-          // After we've done the post... then get the updated history
-          helpers.getHistory().then(function(response) {
-            console.log("Current History", response.data);
-
-            console.log("History", response.data);
-
-            this.setState({ history: response.data });
-
-          }.bind(this));
-        }.bind(this));
-      }
-    }.bind(this));
+  });
   },
+
   // This function allows childrens to update the parent.
-  setTerm: function(term) {
-    this.setState({ searchTerm: term });
+  setSearch: function(topic, startyear, endyear) {
+    this.setState ({ searchTopic: topic, searchStartyear: startyear, searchEndyear: endyear})
+    console.log("Main topic: " + topic);
+    console.log("Start year: " + startyear);
+    console.log("End year: " + endyear);
   },
+
   // Here we render the function
   render: function() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="jumbotron">
-            <h2 className="text-center">Address Finder!</h2>
-            <p className="text-center">
-              <em>Enter a landmark to search for its exact address (ex: "Eiffel Tower").</em>
-            </p>
-          </div>
-
-          <div className="col-md-6">
-
-            <Form setTerm={this.setTerm} />
-
-          </div>
-
-          <div className="col-md-6">
-
-            <Results address={this.state.results} />
-
-          </div>
-
-        </div>
-
-        <div className="row">
-
-          <History history={this.state.history} />
-
-        </div>
-
+	 <div className="main-container">
+ 	  <nav>
+  	    <div className="nav-wrapper">
+    	 <a href="#" className="brand-logo">Logo</a>
+     	  <ul id="nav-mobile" className="right hide-on-med-and-down">
+     		<li><a href="#">Search</a></li>
+        	<li><a href="#">Results</a></li>
+        	<li><a href="#">Saved</a></li>
+          </ul>
+  		</div>
+ 	  </nav>
+  	  <div className="container grid">
+    	<div className="row grid-name">
+      		<div className="col s12 center">
+      			<Search setSearch={this.setSearch} />
+      		</div>
+      	</div>
       </div>
+      <div className="container grid">
+    	<div className="row grid-name">
+      		<div className="col s12 center">
+      			<Results articles={this.state.results} />
+      		</div>
+      	</div>
+      </div>
+     </div>
     );
   }
 });

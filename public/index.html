@@ -11,8 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
  </head>
 
+ <!--this is all that needs to go into index.html-->
  <body class="teal lighten-2">
-   <nav>
+  
+  <!-- This is where React will deploy the contents it generates -->
+  <div id="app"></div>
+
+  <!-- All of our JS code will be transpiled into this bundle.js file -->
+  <script src="bundle.js"></script>
+  
+<!--    <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Logo</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -47,7 +55,7 @@
       			</div>
       		</div>
      </div>
-  </div>
+  </div> -->
     <!--Import jQuery before materialize.js-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
