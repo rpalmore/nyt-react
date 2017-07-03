@@ -24,9 +24,9 @@ app.use(express.static("./public"));
 // -------------------------------------------------
 
 // MongoDB Configuration configuration 
-// mongoose.connect("mongodb://heroku_ffss01pg:bmmkqvsjvkff6g4d5kq2r3tf7i@ds161029.mlab.com:61029/heroku_ffss01pg");
+mongoose.connect("mongodb://heroku_ffss01pg:bmmkqvsjvkff6g4d5kq2r3tf7i@ds161029.mlab.com:61029/heroku_ffss01pg");
 // Mongo development
-mongoose.connect("mongodb://localhost/nytReact");
+// mongoose.connect("mongodb://localhost/nytReact");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
