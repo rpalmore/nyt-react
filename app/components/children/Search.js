@@ -31,7 +31,6 @@ var Search = React.createClass({
     event.preventDefault();
     this.props.setSearch(this.state.topic, this.state.startyear, this.state.endyear);
     this.setState({ topic: "", startyear: "", endyear: ""});
-    console.log("Submit button clicked!!");
   },
 
   render: function() {

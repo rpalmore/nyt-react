@@ -4,6 +4,7 @@ var Saved = require("./children/Saved");
 var Search = require("./children/Search");
 var helpers = require("./utils/helpers");
 
+
 var Main = React.createClass({
   getInitialState: function() {
     return { searchTopic: "", results: [], saved: [] };
@@ -13,7 +14,8 @@ var Main = React.createClass({
   // If the component changes (i.e. if search terms are entered) ...
   componentDidUpdate: function() {
     helpers.runQuery(this.state.searchTopic, this.state.searchStartyear, this.state.searchEndyear).then(function(data) {
-      // Yes: I know this is a bad idea. I am settling so I can move on.
+      // Yes: I know this is a bad idea. I am struggling.
+
       this.setState({ 
         title: data.response.docs[0].headline.main, 
         title2: data.response.docs[1].headline.main,
@@ -44,7 +46,7 @@ var Main = React.createClass({
 	 <div className="main-container">
  	  <nav>
   	    <div className="nav-wrapper">
-    	 <a href="#" className="brand-logo">Logo</a>
+    	 <a href="#" className="brand-logo">NYT Article Scrubber</a>
      	  <ul id="nav-mobile" className="right hide-on-med-and-down">
      		<li><a href="#">Search</a></li>
         	<li><a href="#">Results</a></li>
@@ -62,7 +64,7 @@ var Main = React.createClass({
       <div className="container grid">
     	<div className="row grid-name">
       		<div className="col s12 center">
-        {/*Yes: Bad idea. Moving on for time.*/}
+        {/*Yes: Bad idea. Moving on for time, sanity.*/}
       			<Results 
               title={this.state.title} 
               title2={this.state.title2} 
