@@ -29,9 +29,7 @@ var Search = React.createClass({
   // When a user clicks "submit" button ...
   handleSubmit: function(event) {
     event.preventDefault();
-    // Set the parent to have the search topic, etc.
     this.props.setSearch(this.state.topic, this.state.startyear, this.state.endyear);
-    // Resetting the input field after hitting "submit"
     this.setState({ topic: "", startyear: "", endyear: ""});
     console.log("Submit button clicked!!");
   },
@@ -48,7 +46,7 @@ var Search = React.createClass({
          <h5>Topic</h5>
        </div>
        <div className="input-field col s10 offset-s1">
-         <input placeholder="topic" name="topic" type="text" value={this.state.topic} id="topic" onChange={this.handleInputChange} className="validate">
+         <input placeholder="topic" name="topic" className="validate" required type="text" value={this.state.topic} id="topic" onChange={this.handleInputChange}>
          </input>
          <label className="active"></label>
        </div>
@@ -56,7 +54,7 @@ var Search = React.createClass({
          <h5>Start Year</h5>
        </div>
        <div className="input-field col s10 offset-s1">
-         <input placeholder="YYYYMMDD" name="startyear" type="text" value={this.state.startyear} id="startyear" onChange={this.handleInputChange} className="validate">
+         <input placeholder="YYYYMMDD" name="startyear" required type="text" value={this.state.startyear} id="startyear" onChange={this.handleInputChange} className="validate">
          </input>
          <label className="active"></label>
        </div>
@@ -64,7 +62,7 @@ var Search = React.createClass({
          <h5>End Year</h5>
        </div>
        <div className="input-field col s10 offset-s1">
-         <input placeholder="YYYYMMDD" name="endyear" type="text" value={this.state.endyear} id="endyear" onChange={this.handleInputChange} className="validate">
+         <input placeholder="YYYYMMDD" name="endyear" required type="text" value={this.state.endyear} id="endyear" onChange={this.handleInputChange} className="validate">
          </input>
          <label className="active"></label>
          <button className="waves-effect waves-light btn" type="submit" value="Submit">Submit</button>
@@ -75,6 +73,5 @@ var Search = React.createClass({
   }
 });
 
-// Export the component back for use in other files
 module.exports = Search
 

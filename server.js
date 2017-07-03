@@ -44,29 +44,11 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-// This is the route we will send GET requests to retrieve our most recent search data.
-// We will call this route the moment our page gets rendered
-app.get("/api", function(req, res) {
-
-  // We will find all the records, sort it in descending order, then limit the records to 5
-  Article.find({}).sort([
-    ["date", "descending"]
-  ]).limit(5).exec(function(err, doc) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send(doc);
-    }
-  });
+app.get("/api/saved", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
-// This is the route we will send POST requests to save each search.
-app.post("/api", function(req, res) {
-  console.log("BODY: " + req);
-
-  // Here we'll save the location based on the JSON input.
-  // We'll use Date.now() to always get the current date time
+app.post("/api/saved"), function(req, res) {
   Article.create({
     title: req.data.response.docs.headline.main,
     summary: req.data.response.docs.snippet,
@@ -77,10 +59,32 @@ app.post("/api", function(req, res) {
       console.log(err);
     }
     else {
-      res.send("Saved Search");
+      res.redirect("/");
     }
-  });
-});
+  })
+};
+
+
+// This is the route we will send POST requests to save each search.
+// app.post("/api", function(req, res) {
+//   console.log("BODY: " + req);
+
+//   // Here we'll save the location based on the JSON input.
+//   // We'll use Date.now() to always get the current date time
+//   Article.create({
+//     title: req.data.response.docs.headline.main,
+//     summary: req.data.response.docs.snippet,
+//     pubdate: req.data.response.docs.pub_date,
+//     link: req.data.response.docs.web_url
+//   }, function(err) {
+//     if (err) {
+//       console.log(err);
+//     }
+//     else {
+//       res.send("Saved Search");
+//     }
+//   });
+// });
 
 // -------------------------------------------------
 
