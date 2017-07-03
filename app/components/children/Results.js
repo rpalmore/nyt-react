@@ -20,25 +20,25 @@ var Results = React.createClass({
             <li className="collection-header">
               <h5>{this.props.title}</h5>
             </li>
-            <li className="collection-item">{this.props.summary}<br />{this.props.pubdate}<a href="#" onClick={this.handleClick} className="secondary-content"><i className="material-icons" id="saveArticle">library_add</i></a></li>
+            <li className="collection-item">{this.props.summary}<br />{this.props.pubdate}<a href="#" onClick={this.handleClick} id="saveArticle" className="secondary-content"><i className="material-icons">library_add</i></a></li>
             <li className="collection-header">
               <h5>{this.props.title2}</h5>
             </li>
-            <li className="collection-item">{this.props.summary2}<br />{this.props.pubdate2}<a href="#" onClick={this.handleClick} className="secondary-content"><i className="material-icons" id="saveArticle">library_add</i></a></li>
+            <li className="collection-item">{this.props.summary2}<br />{this.props.pubdate2}<a href="#" onClick={this.handleClick} id="saveArticle" className="secondary-content"><i className="material-icons">library_add</i></a></li>
             <li className="collection-header">
               <h5>{this.props.title3}</h5>
             </li>
-            <li className="collection-item">{this.props.summary3}<br />{this.props.pubdate3}<a href="#" onClick={this.handleClick} className="secondary-content"><i className="material-icons" id="saveArticle">library_add</i></a>
+            <li className="collection-item">{this.props.summary3}<br />{this.props.pubdate3}<a href="#" onClick={this.handleClick} id="saveArticle" className="secondary-content"><i className="material-icons">library_add</i></a>
             </li>
             <li className="collection-header">
               <h5>{this.props.title4}</h5>
             </li>
-            <li className="collection-item">{this.props.summary4}<br />{this.props.pubdate4}<a href="#" onClick={this.handleClick} className="secondary-content"><i className="material-icons" id="saveArticle">library_add</i></a>
+            <li className="collection-item">{this.props.summary4}<br />{this.props.pubdate4}<a href="#" onClick={this.handleClick} id="saveArticle" className="secondary-content"><i className="material-icons">library_add</i></a>
             </li>
             <li className="collection-header">
               <h5>{this.props.title5}</h5>
             </li>
-            <li className="collection-item">{this.props.summary5}<br />{this.props.pubdate5}<a href="#" onClick={this.handleClick} className="secondary-content"><i className="material-icons" id="saveArticle">library_add</i></a>
+            <li className="collection-item">{this.props.summary5}<br />{this.props.pubdate5}<a href="#" onClick={this.handleClick} id="saveArticle" className="secondary-content"><i className="material-icons">library_add</i></a>
             </li>
           </ul>
         </div>
